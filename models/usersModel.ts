@@ -9,6 +9,6 @@ const userSchema = new Schema({
   readingGoal: Number,
 })
 
-const userModel = mongoose.models.test || mongoose.model('test', userSchema)
+const userModel = mongoose.models.users || mongoose.model('user', userSchema)
 
 export default userModel

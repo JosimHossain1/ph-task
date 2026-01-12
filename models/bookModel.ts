@@ -14,5 +14,5 @@ const bookSchema = new Schema({
   publishedYear: { type: Number }
 }, { timestamps: true })
 
-const bookModel = mongoose.models.books || mongoose.model("Book", bookSchema)
+const bookModel = mongoose.models.book || mongoose.model("book", bookSchema)
 export default bookModel

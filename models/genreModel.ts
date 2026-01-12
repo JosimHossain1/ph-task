@@ -5,5 +5,5 @@ const genreSchema = new Schema({
   slug: { type: String, lowercase: true }
 }, { timestamps: true })
 
-const genreModel = mongoose.models.genres || mongoose.model("Genre", genreSchema)
+const genreModel = mongoose.models.genre || mongoose.model("genre", genreSchema)
 export default genreModel

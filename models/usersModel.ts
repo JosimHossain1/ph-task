@@ -9,6 +9,6 @@ const userSchema = new Schema({
   readingGoal: Number,
 })
 
-const userModel = mongoose.models.users || mongoose.model('User', userSchema)
+const userModel = mongoose.models.user || mongoose.model('user', userSchema)
 
 export default userModel

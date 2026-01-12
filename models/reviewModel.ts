@@ -10,5 +10,5 @@ const reviewSchema = new Schema({
   isEdited: { type: Boolean, default: false }
 }, { timestamps: true })
 
-const reviewModel = mongoose.models.reviews || mongoose.model("review", reviewSchema)
+const reviewModel = mongoose.models.reviews || mongoose.model("Review", reviewSchema)
 export default reviewModel

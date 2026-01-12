@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const bookSchema = new Schema({
   bookName: { type: String, required: true },
   author: { type: String, required: true },
-  genreId: { type: Schema.Types.ObjectId, ref: "genre", required: true },
+  genreId: { type: Schema.Types.ObjectId, ref: "genres", required: true },
   description: String,
   coverUrl: String,
 
@@ -14,5 +14,5 @@ const bookSchema = new Schema({
   publishedYear: { type: Number }
 }, { timestamps: true })
 
-const bookModel = mongoose.models.users || mongoose.model("user", bookSchema)
+const bookModel = mongoose.models.books || mongoose.model("Book", bookSchema)
 export default bookModel

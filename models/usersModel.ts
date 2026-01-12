@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema({
-  name:  { type: String, required: true },
+  name: { type: String, required: true },
   email: { type: String, unique: true },
   password: { type: String, required: true },
   photo: String,
@@ -9,6 +9,6 @@ const userSchema = new Schema({
   readingGoal: Number,
 })
 
-const userModel = mongoose.models.users || mongoose.model('user', userSchema)
+const userModel = mongoose.models.users || mongoose.model('User', userSchema)
 
 export default userModel

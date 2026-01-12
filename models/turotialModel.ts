@@ -7,5 +7,5 @@ const tutorialSchema = new Schema({
   contentUrl: { type: String, required: true }
 }, { timestamps: true })
 
-const tutorialModel = mongoose.models.tutorial || mongoose.model("tutorial", tutorialSchema)
+const tutorialModel = mongoose.models.tutorials || mongoose.model("Tutorial", tutorialSchema)
 export default tutorialModel

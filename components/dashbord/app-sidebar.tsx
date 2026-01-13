@@ -2,21 +2,12 @@
 
 import * as React from "react"
 import {
-  IconCamera,
+  IconBook,
   IconChartBar,
   IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
+  IconStar,
   IconUsers,
+  IconVideo,
 } from "@tabler/icons-react"
 
 
@@ -30,126 +21,87 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { NavMain } from "./nav-main"
-import { NavDocuments } from "./nav-documents"
-import { NavSecondary } from "./nav-secondary"
 import { NavUser } from "./nav-user"
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Admin",
+    email: "admin@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
+
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dahboard",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: "Manage Books",
+      url: "/dashboard/manage-book",
+      icon: IconBook,
     },
     {
-      title: "Analytics",
-      url: "#",
+      title: "Manage Genres",
+      url: "/dashboard/manage-genre",
       icon: IconChartBar,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
-      url: "#",
+      title: "Manage Users",
+      url: "/dashboard/manage-users",
       icon: IconUsers,
     },
-  ],
-  navClouds: [
     {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Moderate Reviews",
+      url: "/dashboard/moderate-review",
+      icon: IconStar,
     },
     {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Manage Tutorials",
+      url: "/dashboard/manage-tutorials",
+      icon: IconVideo,
     },
   ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
+
 }
+
+const userData = {
+  user: {
+    name: "User 1",
+    email: "user@gmail.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: IconDashboard,
+    },
+    {
+      title: "Browse Books",
+      url: "/dashboard/browse-books",
+      icon: IconBook,
+    },
+    {
+      title: "My Library",
+      url: "/dashboard/my-library",
+      icon: IconChartBar,
+    },
+    {
+      title: "Book Details",
+      url: "/dashboard/book-details",
+      icon: IconUsers,
+    },
+    {
+      title: "Tutorials",
+      url: "/dashboard/tutorial",
+      icon: IconVideo,
+    },
+  ],
+
+}
+const user = "Admin" as string
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -162,20 +114,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <IconBook className="!size-5" />
+                <span className="text-base font-semibold">BookWorm</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavMain items={user == "Admin" ? data.navMain : userData.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user == "Admin" ? data.user : userData.user} />
       </SidebarFooter>
     </Sidebar>
   )

@@ -14,7 +14,7 @@ export async function UpdateUserAction(formData: FormData) {
   }
 
 
-  await fetch(`http://localhost:3000/api/users/${id}`, {
+  await fetch(` /api/users/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -26,5 +26,5 @@ export async function UpdateUserAction(formData: FormData) {
 export async function DeleteUserAction(formData: FormData) {
   const id = formData.get("id") as string
 
-  await fetch(`http://localhost:3000/api/users/${id}`, { method: "DELETE" })
+  await fetch(` /api/users/${id}`, { method: "DELETE" })
 }

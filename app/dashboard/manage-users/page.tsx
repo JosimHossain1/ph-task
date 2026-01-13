@@ -29,7 +29,7 @@ const UserTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/users')
+        const res = await fetch(' /api/users')
         const data = await res.json()
         setUsers(data)
       } catch (error) {
@@ -65,7 +65,7 @@ const UserTable = () => {
                 <td className="border px-3 py-2">{user.name}</td>
                 <td className="border px-3 py-2">{user.email}</td>
 
-                <td className="border px-3 py-2">  {user.role=="Admin" ? <Badge className='bg-green-100 border text-green-400'>{user.role}</Badge> : user.role}</td>
+                <td className="border px-3 py-2">  {user.role == "Admin" ? <Badge className='bg-green-100 border text-green-400'>{user.role}</Badge> : user.role}</td>
 
                 <td className="border px-2 py-2 flex gap-2 justify-center">
                   <Sheet>

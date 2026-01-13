@@ -19,7 +19,7 @@ export async function BookAddFormAction(formData: FormData) {
   }
 
 
-  await fetch("http://localhost:3000/api/books", {
+  await fetch(" /api/books", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -48,7 +48,7 @@ export async function UpdateBookAction(formData: FormData) {
   }
 
 
-  await fetch(`http://localhost:3000/api/books/${id}`, {
+  await fetch(` /api/books/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -61,5 +61,5 @@ export async function deleteBookAction(formData: FormData) {
   const id = formData.get("id") as string
   console.log(id)
 
-  await fetch(`http://localhost:3000/api/books/${id}`, { method: "DELETE" })
+  await fetch(` /api/books/${id}`, { method: "DELETE" })
 }

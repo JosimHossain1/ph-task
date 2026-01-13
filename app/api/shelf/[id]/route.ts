@@ -17,7 +17,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const { id } = await params;
 
   const deletedShelf = await shelfModel.findByIdAndDelete(id)
-  return new Response(JSON.stringify({ message: "Shelf Deletd", data : deletedShelf}), { status: 204 })
+  return new Response(JSON.stringify({ message: "Shelf Deletd", data: deletedShelf }), { status: 200 })
 }
 
 
@@ -27,6 +27,6 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const { id } = await params;
   const body = await req.json()
 
-  const updatedShelf = await shelfModel.findByIdAndUpdate(id, {$set : body}, {new : true})
-  return new Response(JSON.stringify({ message: "Shelf Updated", data : updatedShelf }), { status: 200 })
+  const updatedShelf = await shelfModel.findByIdAndUpdate(id, { $set: body }, { new: true })
+  return new Response(JSON.stringify({ message: "Shelf Updated", data: updatedShelf }), { status: 200 })
 }

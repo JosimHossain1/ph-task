@@ -17,7 +17,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const { id } = await params;
 
   const deletedBook = await bookModel.findByIdAndDelete(id)
-  return new Response(JSON.stringify({ message: "Book Deletd", data : deletedBook}), { status: 204 })
+  return new Response(JSON.stringify({ message: "Book Deletd", data: deletedBook }), { status: 200 })
 }
 
 
@@ -27,6 +27,6 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const { id } = await params;
   const body = await req.json()
 
-  const updatedBook = await bookModel.findByIdAndUpdate(id, {$set : body}, {new : true})
-  return new Response(JSON.stringify({ message: "Book Updated", data : updatedBook }), { status: 200 })
+  const updatedBook = await bookModel.findByIdAndUpdate(id, { $set: body }, { new: true })
+  return new Response(JSON.stringify({ message: "Book Updated", data: updatedBook }), { status: 200 })
 }

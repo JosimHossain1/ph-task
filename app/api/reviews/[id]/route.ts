@@ -17,7 +17,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const { id } = await params;
 
   const deletedReview = await reviewModel.findByIdAndDelete(id)
-  return new Response(JSON.stringify({ message: "Review Deletd", data : deletedReview}), { status: 204 })
+  return new Response(JSON.stringify({ message: "Review Deletd", data: deletedReview }), { status: 200 })
 }
 
 
@@ -27,6 +27,6 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const { id } = await params;
   const body = await req.json()
 
-  const updatedReview = await reviewModel.findByIdAndUpdate(id, {$set : body}, {new : true})
-  return new Response(JSON.stringify({ message: "Review Updated", data : updatedReview }), { status: 200 })
+  const updatedReview = await reviewModel.findByIdAndUpdate(id, { $set: body }, { new: true })
+  return new Response(JSON.stringify({ message: "Review Updated", data: updatedReview }), { status: 200 })
 }

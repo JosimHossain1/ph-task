@@ -18,7 +18,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const { id } = await params;
 
   const deletedGenre = await genreModel.findByIdAndDelete(id)
-  return new Response(JSON.stringify({ message: "Genre Deletd", data : deletedGenre}), { status: 204 })
+  return new Response(JSON.stringify({ message: "Genre Deletd", data: deletedGenre }), { status: 200 })
 }
 
 
@@ -28,6 +28,6 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const { id } = await params;
   const body = await req.json()
 
-  const updatedGenre = await genreModel.findByIdAndUpdate(id, {$set : body}, {new : true})
-  return new Response(JSON.stringify({ message: "Genre Updated", data : updatedGenre }), { status: 200 })
+  const updatedGenre = await genreModel.findByIdAndUpdate(id, { $set: body }, { new: true })
+  return new Response(JSON.stringify({ message: "Genre Updated", data: updatedGenre }), { status: 200 })
 }

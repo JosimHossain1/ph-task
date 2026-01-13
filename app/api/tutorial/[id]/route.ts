@@ -17,7 +17,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const { id } = await params;
 
   const deletedTutorial = await tutorialModel.findByIdAndDelete(id)
-  return new Response(JSON.stringify({ message: "Tutorial Deletd", data : deletedTutorial}), { status: 204 })
+  return new Response(JSON.stringify({ message: "Tutorial Deletd", data: deletedTutorial }), { status: 200 })
 }
 
 
@@ -27,6 +27,6 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const { id } = await params;
   const body = await req.json()
 
-  const updatedTutorial = await tutorialModel.findByIdAndUpdate(id, {$set : body}, {new : true})
-  return new Response(JSON.stringify({ message: "Tutorial Updated", data : updatedTutorial }), { status: 200 })
+  const updatedTutorial = await tutorialModel.findByIdAndUpdate(id, { $set: body }, { new: true })
+  return new Response(JSON.stringify({ message: "Tutorial Updated", data: updatedTutorial }), { status: 200 })
 }

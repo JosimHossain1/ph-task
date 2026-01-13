@@ -1,5 +1,12 @@
 "use server"
 
+
+export async function getUsers(){
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`)
+  const users = await res.json()
+  return users
+}
+
 export async function UpdateUserAction(formData: FormData) {
   const id = formData.get("id") as string
   const name = formData.get("name") as string;
@@ -14,7 +21,7 @@ export async function UpdateUserAction(formData: FormData) {
   }
 
 
-  await fetch(` /api/users/${id}`, {
+  await fetch(`/api/users/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -26,5 +33,5 @@ export async function UpdateUserAction(formData: FormData) {
 export async function DeleteUserAction(formData: FormData) {
   const id = formData.get("id") as string
 
-  await fetch(` /api/users/${id}`, { method: "DELETE" })
+  await fetch(`/api/users/${id}`, { method: "DELETE" })
 }

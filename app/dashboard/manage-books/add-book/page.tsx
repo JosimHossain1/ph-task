@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card"
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
@@ -43,7 +42,6 @@ const AddBook = () => {
                 />
               </Field>
 
-              {/* Author */}
               <Field>
                 <FieldLabel htmlFor="author">Author</FieldLabel>
                 <Input
@@ -55,7 +53,6 @@ const AddBook = () => {
                 />
               </Field>
 
-              {/* Genre */}
               <Field>
                 <FieldLabel htmlFor="genre">Genre</FieldLabel>
                 <Input
@@ -68,7 +65,6 @@ const AddBook = () => {
               </Field>
 
 
-              {/* Total Copies */}
               <Field>
                 <FieldLabel htmlFor="totalCopies">Total Copies</FieldLabel>
                 <Input
@@ -100,7 +96,6 @@ const AddBook = () => {
                 />
               </Field>
               
-              {/* Submit */}
               <Field>
                 <Button type="submit" className="w-full">
                   Add Book

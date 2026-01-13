@@ -26,7 +26,7 @@ const BookTable = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/books')
+        const res = await fetch(' /api/books')
         const data = await res.json()
         setBooks(data)
       } catch (error) {

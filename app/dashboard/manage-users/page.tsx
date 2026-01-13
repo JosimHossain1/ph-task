@@ -1,7 +1,3 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -18,33 +14,14 @@ import {
 import Form from 'next/form'
 
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { DeleteUserAction, UpdateUserAction } from '@/app/serverActions/userAction'
+import { DeleteUserAction, getUsers, UpdateUserAction } from '@/app/serverActions/userAction'
 import { UserType } from '@/types/UserType'
 import { Badge } from '@/components/ui/badge'
 
-const UserTable = () => {
-  const [users, setUsers] = useState<UserType[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch(' /api/users')
-        const data = await res.json()
-        setUsers(data)
-      } catch (error) {
-        console.error('Failed to fetch Users', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchUsers()
-  }, [])
-
-  if (loading) {
-    return <p className="p-4">Loading Users...</p>
-  }
+const UserTable = async () => {
+  
+const users = await getUsers()
+console.log(users)
 
   return (
     <div className="p-10">
@@ -60,7 +37,7 @@ const UserTable = () => {
 
         <tbody>
           {users.length ? (
-            users.map((user) => (
+            users.map((user : UserType) => (
               <tr key={user._id} className="hover:bg-gray-50">
                 <td className="border px-3 py-2">{user.name}</td>
                 <td className="border px-3 py-2">{user.email}</td>

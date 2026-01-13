@@ -29,7 +29,7 @@ const GenreTable = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/genre')
+        const res = await fetch(' /api/genre')
         const data = await res.json()
         setGenres(data)
       } catch (error) {

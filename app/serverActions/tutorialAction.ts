@@ -14,7 +14,7 @@ export async function AddTutorialAction(formData: FormData) {
     videoUrl
   }
 
-  const res = await fetch(" /api/tutorial", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tutorial`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -30,7 +30,7 @@ export async function AddTutorialAction(formData: FormData) {
 
 // Get the tuturial from the database
 export async function GetTutorialAction() {
-  const res = await fetch(" /api/tutorial")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tutorial`)
   const allTutorial = await res.json()
   return allTutorial
 }

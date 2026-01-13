@@ -12,7 +12,7 @@ export async function signupFormAction(formData: FormData) {
   }
 
   console.log(user)
-  await fetch("http://localhost:3000/api/users", {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

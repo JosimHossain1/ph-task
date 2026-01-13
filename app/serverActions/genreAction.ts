@@ -1,7 +1,7 @@
 "use server"
 
 export async function GetGenres() {
-  const res = await fetch(" /api/genre")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/genre`)
 
   const genres = await res.json()
 
@@ -18,7 +18,7 @@ export async function AddGenreAction(formData: FormData) {
   }
 
 
-  await fetch(" /api/genre", {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/genre`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export async function UpdategenreAction(formData: FormData) {
   }
 
 
-  await fetch(` /api/genre/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/genre/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -50,5 +50,5 @@ export async function UpdategenreAction(formData: FormData) {
 export async function DeletegenreAction(formData: FormData) {
   const id = formData.get("id") as string
 
-  await fetch(` /api/genre/${id}`, { method: "DELETE" })
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/genre/${id}`, { method: "DELETE" })
 }

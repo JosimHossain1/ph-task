@@ -1,4 +1,4 @@
-import { GetTutorialAction } from "@/app/serverActions/tutorialAction"
+import { getAllTutorial } from "@/app/serverActions/tutorialAction"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -15,13 +15,13 @@ type Video = {
 
 const EmbeddedYoutubePage= async()  => {
 
-  const videoTutorials = await GetTutorialAction()
+  const videoTutorials = await getAllTutorial()
 
   return (
     <div className="p-6">
       <h1 className=" text-2xl font-semibold">Video Tutorials</h1>
       <Link href="/dashboard/manage-tutorials/add-tutorial"><Button className="my-6">Add New Tutorial</Button></Link>
-      
+       
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {videoTutorials.map((video : Video) => (
           <div

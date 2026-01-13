@@ -15,7 +15,8 @@ import {
 import { Input } from "@/components/ui/input"
 import Form from "next/form"
 
-const CreateGenre = () => {
+const CreateGenre = async() => {
+
   return (
     <div className="p-20">
       <Card>

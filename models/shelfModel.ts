@@ -8,5 +8,5 @@ const shelfSchema = new Schema({
 }, { timestamps: true });
 
 
-const shelfModel = mongoose.models.shelf || mongoose.model("shelf", shelfSchema);
+const shelfModel = mongoose.models.Shelf || mongoose.model("Shelf", shelfSchema);
 export default shelfModel;

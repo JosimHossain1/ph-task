@@ -1,10 +1,14 @@
 "use server"
 
+import dbConnect from "@/lib/dbConnect"
+import userModel from "@/models/usersModel"
 
-export async function getUsers(){
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`)
-  const users = await res.json()
+export async function getAllUser() {
+
+  await dbConnect()
+  const users = await userModel.find().lean()
   return users
+
 }
 
 export async function UpdateUserAction(formData: FormData) {

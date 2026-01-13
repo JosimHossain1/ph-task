@@ -1,7 +1,3 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -22,29 +18,8 @@ import { DeletegenreAction, UpdategenreAction } from '@/app/serverActions/genreA
 import { GenreType } from '@/types/GenreType'
 
 
-const GenreTable = () => {
-  const [genres, setGenres] = useState<GenreType[]>([])
-  const [loading, setLoading] = useState(true)
+const GenreTable = ({genres} : {genres : GenreType[]}) => {
 
-  useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const res = await fetch(' /api/genre')
-        const data = await res.json()
-        setGenres(data)
-      } catch (error) {
-        console.error('Failed to fetch Genres', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchGenres()
-  }, [])
-
-  if (loading) {
-    return <p className="p-4">Loading Genres...</p>
-  }
 
   return (
     <div className="py-5">

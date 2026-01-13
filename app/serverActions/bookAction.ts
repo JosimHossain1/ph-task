@@ -1,4 +1,18 @@
 "use server"
+
+import dbConnect from "@/lib/dbConnect";
+import bookModel from "@/models/bookModel";
+
+
+export async function getAllBooks() {
+
+  await dbConnect()
+  const books = await bookModel.find().lean()
+  return books
+
+}
+
+
 export async function BookAddFormAction(formData: FormData) {
 
   const bookName = formData.get("bookName") as string;

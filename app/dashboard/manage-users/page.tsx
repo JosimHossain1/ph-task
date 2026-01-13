@@ -14,14 +14,13 @@ import {
 import Form from 'next/form'
 
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { DeleteUserAction, getUsers, UpdateUserAction } from '@/app/serverActions/userAction'
+import { DeleteUserAction, getAllUser, UpdateUserAction } from '@/app/serverActions/userAction'
 import { UserType } from '@/types/UserType'
 import { Badge } from '@/components/ui/badge'
 
 const UserTable = async () => {
-  
-const users = await getUsers()
-console.log(users)
+    
+const users = await getAllUser()
 
   return (
     <div className="p-10">

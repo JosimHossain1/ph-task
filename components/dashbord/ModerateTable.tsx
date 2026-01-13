@@ -1,4 +1,3 @@
-// app/dashboard/reviews/page.tsx
 import Image from "next/image"
 
 type Review = {

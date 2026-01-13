@@ -1,5 +1,15 @@
 "use server"
 
+import dbConnect from "@/lib/dbConnect"
+import tutorialModel from "@/models/turotialModel"
+
+export async function getAllTutorial() {
+
+  await dbConnect()
+  const tutorial = await tutorialModel.find().lean()
+  return tutorial
+
+}
 // Add the tutorial in the database.
 export async function AddTutorialAction(formData: FormData) {
   const tutorialName = await formData.get("tutorialName") as string
@@ -26,11 +36,4 @@ export async function AddTutorialAction(formData: FormData) {
   const createdTutorialReturn = await res.json()
 
   return createdTutorialReturn;
-}
-
-// Get the tuturial from the database
-export async function GetTutorialAction() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tutorial`)
-  const allTutorial = await res.json()
-  return allTutorial
 }

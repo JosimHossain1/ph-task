@@ -1,10 +1,12 @@
 "use server"
 
-export async function GetGenres() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/genre`)
+import dbConnect from "@/lib/dbConnect";
+import genreModel from "@/models/genreModel";
 
-  const genres = await res.json()
+export async function getAllGenre() {
 
+  await dbConnect()
+  const genres = await genreModel.find().lean()
   return genres
 
 }

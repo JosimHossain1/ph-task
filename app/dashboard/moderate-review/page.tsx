@@ -1,6 +1,7 @@
-import ReviewPage from '@/components/dashbord/moderate-reviews/ModerateTable'
+import ReviewPage from "@/components/dashbord/ModerateTable"
 
-const ModerateReviewPage = () => {
+const ModerateReviewPage = async() => {
+  // const reviews = await getAllReview()
   return (
     <div>
       <ReviewPage/>

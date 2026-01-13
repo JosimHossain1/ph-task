@@ -1,4 +1,4 @@
-import { GetGenres } from '@/app/serverActions/genreAction'
+import { getAllGenre } from '@/app/serverActions/genreAction'
 import { AddTutorialAction } from '@/app/serverActions/tutorialAction'
 import { Button } from '@/components/ui/button'
 import { GenreType } from '@/types/GenreType'
@@ -6,7 +6,7 @@ import Form from 'next/form'
 
 const AddTutorialPage = async () => {
 
-  const genres = await GetGenres()
+  const genres = await getAllGenre()
 
   return (
     <div className="max-w-xl p-6">

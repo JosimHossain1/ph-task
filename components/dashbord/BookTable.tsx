@@ -1,6 +1,3 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import { BookType } from '@/types/BookType'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,29 +16,7 @@ import Form from 'next/form'
 import { deleteBookAction, UpdateBookAction } from '@/app/serverActions/bookAction'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
-const BookTable = () => {
-  const [books, setBooks] = useState<BookType[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const res = await fetch(' /api/books')
-        const data = await res.json()
-        setBooks(data)
-      } catch (error) {
-        console.error('Failed to fetch books', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchBooks()
-  }, [])
-
-  if (loading) {
-    return <p className="p-4">Loading books...</p>
-  }
+const BookTable = ({books} : {books : BookType[]}) => {
 
   return (
     <div className="py-4">
@@ -64,7 +39,7 @@ const BookTable = () => {
 
         <tbody>
           {books.length ? (
-            books.map((book) => (
+            books.map((book : BookType) => (
               <tr key={book._id} className="hover:bg-gray-50">
                 <td className="border px-3 py-2">{book.bookName}</td>
                 <td className="border px-3 py-2">{book.author}</td>

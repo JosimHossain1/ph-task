@@ -1,4 +1,14 @@
 "use server"
+
+export async function GetGenres() {
+  const res = await fetch("http://localhost:3000/api/genre")
+
+  const genres = await res.json()
+
+  return genres
+
+}
+
 export async function AddGenreAction(formData: FormData) {
 
   const genreName = formData.get("genreName") as string;

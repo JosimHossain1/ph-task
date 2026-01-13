@@ -1,0 +1,55 @@
+[
+  {
+    "id" : 1,
+    "bookName": "Atomic Habits",
+    "author": "James Clear",
+    "status": "Available",
+    "genre": "Self-Improvement",
+    "description": "A proven framework for building good habits and breaking bad ones.",
+    "publishedYear": 2018,
+    "language": "English",
+    "pages": 320,
+    "isbn": "9780735211292",
+    "coverUrl": "https://example.com/covers/atomic-habits.jpg",
+    "totalCopies": 12,
+    "availableCopies": 8,
+    "totalReviews": 2450,
+    "averageRating": 4.8
+  },
+  {
+    "id" : 2,
+    "bookName": "Clean Code",
+    "author": "Robert C. Martin",
+    "status": "Available",
+    "genre": "Programming",
+    "description": "A handbook of agile software craftsmanship.",
+    "publishedYear": 2008,
+    "language": "English",
+    "pages": 464,
+    "isbn": "9780132350884",
+    "coverUrl": "https://example.com/covers/clean-code.jpg",
+    "totalCopies": 6,
+    "availableCopies": 2,
+    "totalReviews": 1870,
+    "averageRating": 4.7
+  },
+  {
+    "id" : 3,
+    "bookName": "The Pragmatic Programmer",
+    "author": "Andrew Hunt & David Thomas",
+    "status": "Available",
+    "genre": "Programming",
+    "description": "Your journey to mastery in software development.",
+    "publishedYear": 1999,
+    "language": "English",
+    "pages": 352,
+    "isbn": "9780201616224",
+    "coverUrl": "https://example.com/covers/pragmatic-programmer.jpg",
+    "totalCopies": 8,
+    "availableCopies": 5,
+    "totalReviews": 1340,
+    "averageRating": 4.6
+  }
+
+]
+ 

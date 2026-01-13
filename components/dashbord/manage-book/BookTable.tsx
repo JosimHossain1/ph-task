@@ -16,7 +16,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import Form from 'next/form'
-import { UpdateBookAction } from '@/app/serverActions/bookAction'
+import { deleteBookAction, UpdateBookAction } from '@/app/serverActions/bookAction'
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
 const BookTable = () => {
   const [books, setBooks] = useState<BookType[]>([])
@@ -78,7 +79,7 @@ const BookTable = () => {
                 <td className="border px-2 py-2 flex gap-2 justify-center">
                   <Sheet>
                     <SheetTrigger asChild>
-                      <Button variant="secondary" className='bg-yellow-500'>Edit</Button>
+                      <Button variant="secondary" className='bg-yellow-500 hover:bg-yellow-600 cursor-pointer text-white hover:text-white'>Edit</Button>
                     </SheetTrigger>
                     <SheetContent>
                       <SheetHeader>
@@ -135,9 +136,29 @@ const BookTable = () => {
                   </Sheet>
 
                   {/* Delete the book */}
-                  <Button size="sm" variant="destructive">
-                    Delete
-                  </Button>
+                  <Dialog>
+
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className='bg-red-500 hover:bg-red-600 cursor-pointer text-white hover:text-white'>Delete</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Are you sure? Want to Delete?</DialogTitle>
+                        <DialogDescription>
+                          If you delete onece. you can not undo the item.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <Form action={deleteBookAction}>
+                        <Input id="id" name="id" type='hidden' defaultValue={book._id} />
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant="outline" className=' cursor-pointer'>Cancel</Button>
+                          </DialogClose>
+                          <Button type="submit" className='bg-red-600 hover:bg-red-700 cursor-pointer'>Confirm Delete</Button>
+                        </DialogFooter>
+                      </Form>
+                    </DialogContent>
+                  </Dialog>
                 </td>
               </tr>
             ))
@@ -150,7 +171,7 @@ const BookTable = () => {
           )}
         </tbody>
       </table>
-    </div>
+    </div >
   )
 }
 

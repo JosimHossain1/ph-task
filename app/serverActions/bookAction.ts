@@ -30,7 +30,7 @@ export async function BookAddFormAction(formData: FormData) {
 }
 
 
-export async function UpdateBookAction(formData : FormData){
+export async function UpdateBookAction(formData: FormData) {
   const id = formData.get("id") as string
   const bookName = formData.get("bookName") as string;
   const author = formData.get("author") as string;
@@ -55,4 +55,11 @@ export async function UpdateBookAction(formData : FormData){
     },
     body: JSON.stringify(book)
   })
+}
+
+export async function deleteBookAction(formData: FormData) {
+  const id = formData.get("id") as string
+  console.log(id)
+
+  await fetch(`http://localhost:3000/api/books/${id}`, { method: "DELETE" })
 }

@@ -18,7 +18,6 @@ import {
 import { Input } from "@/components/ui/input"
 import Form from "next/form"
 import Link from "next/link"
-import CloudinaryUpload from "./CloudinaryUpload";
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   return (
     <Card {...props}>

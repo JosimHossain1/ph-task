@@ -4,9 +4,9 @@ const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true },
   password: { type: String, required: true },
-  photo: String,
   role: { type: String, enum: ['Admin', 'User'], default: 'User' },
-  readingGoal: Number,
+  photoUrl: String,
+  readingGoal: {type : Number, default: 0 },
 })
 
 const userModel = mongoose.models.user || mongoose.model('user', userSchema)

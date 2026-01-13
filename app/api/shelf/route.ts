@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   return new Response(JSON.stringify(findShelf), { status: 200 })
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   await dbConnect();
 
   const body = await req.json()

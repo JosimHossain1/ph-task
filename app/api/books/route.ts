@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import bookModel from "@/models/bookModel";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   await dbConnect()
@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   return new Response(JSON.stringify(findBook), { status: 200 })
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   await dbConnect();
 
   const body = await req.json()

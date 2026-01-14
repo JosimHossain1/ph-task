@@ -29,8 +29,6 @@ const BookTable = ({books} : {books : BookType[]}) => {
             <th className="border px-3 py-2">Status</th>
             <th className="border px-3 py-2">Total</th>
             <th className="border px-3 py-2">Available</th>
-            <th className="border px-3 py-2">Reviews</th>
-            <th className="border px-3 py-2">Rating</th>
             <th className="border px-3 py-2">Action</th>
           </tr>
         </thead>
@@ -45,8 +43,6 @@ const BookTable = ({books} : {books : BookType[]}) => {
                 <td className="border px-3 py-2 text-center">{book.status}</td>
                 <td className="border px-3 py-2 text-center">{book.totalCopies}</td>
                 <td className="border px-3 py-2 text-center">{book.availableCopies}</td>
-                <td className="border px-3 py-2 text-center">{book.totalReview}</td>
-                <td className="border px-3 py-2 text-center">{book.avarageRating}</td>
                 <td className="border px-2 py-2 flex gap-2 justify-center">
                   <Sheet>
                     <SheetTrigger asChild>
@@ -77,6 +73,14 @@ const BookTable = ({books} : {books : BookType[]}) => {
                           <div className="grid gap-3">
                             <Label htmlFor="genre">Genre</Label>
                             <Input id="genre" name="genre" defaultValue={book.genre} />
+                          </div>
+                          <div className="grid gap-3">
+                            <Label htmlFor="description">Description</Label>
+                            <Input id="description" name="description" defaultValue={book.description} />
+                          </div>
+                          <div className="grid gap-3">
+                            <Label htmlFor="totalPages">Total Pages</Label>
+                            <Input id="totalPages" name="totalPages" defaultValue={book.totalPages} />
                           </div>
                         </div>
 

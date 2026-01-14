@@ -53,7 +53,6 @@ export async function UpdateBookAction(formData: FormData) {
   const author = formData.get("author") as string
   const genre = formData.get("genre") as string
   const description = formData.get("description") as string
-  const coverImage = formData.get("coverImage") as string
   const totalPages = Number(formData.get("totalPages"))
 
   if (!id) throw new Error("Book ID missing")
@@ -63,7 +62,6 @@ export async function UpdateBookAction(formData: FormData) {
     author,
     genre,
     description,
-    coverImage,
     totalPages,
   })
 

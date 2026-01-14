@@ -63,11 +63,11 @@ export default function LoginPage() {
             <FieldGroup className="space-y-4">
               <Field>
                 <FieldLabel>Email</FieldLabel>
-                <Input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                <Input type="email" placeholder='Email Address' required value={email} onChange={(e) => setEmail(e.target.value)} />
               </Field>
               <Field>
                 <FieldLabel>Password</FieldLabel>
-                <Input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Input type="password" placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)} />
               </Field>
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Logging in..." : "Login"}

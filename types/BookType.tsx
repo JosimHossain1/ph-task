@@ -3,11 +3,12 @@ export type BookType = {
   bookName: string
   author: string
   genre: string
-  shelfLocation: string
-  publishedYear: number
+  description: string
   status: string
   totalCopies: number
   availableCopies: number
   totalReview: number
+  totalPages : string
+  addedCount : Number
   avarageRating: number
 }

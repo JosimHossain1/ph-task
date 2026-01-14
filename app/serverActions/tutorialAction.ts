@@ -10,7 +10,7 @@ export async function getAllTutorial() {
   return tutorial
 
 }
-// Add the tutorial in the database.
+
 export async function AddTutorialAction(formData: FormData) {
   const tutorialName = await formData.get("tutorialName") as string
   const genreName = await formData.get("genreName") as string

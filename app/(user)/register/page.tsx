@@ -33,7 +33,7 @@ import Link from "next/link"
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="name">Full Name</FieldLabel>
-              <Input id="name" name="name" type="text" placeholder="John Doe" required />
+              <Input id="name" name="name" type="text" placeholder="Josim Hawladar" required />
             </Field>
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -56,16 +56,8 @@ import Link from "next/link"
                 Must be at least 8 characters long.
               </FieldDescription>
             </Field>
-            {/* <Field>
-              <FieldLabel htmlFor="picture">Picture</FieldLabel>
-             <CloudinaryUpload /> 
-            </Field> */}
             <FieldGroup>
               <Field>
-                <Button type="submit">Create Account</Button>
-                <Button variant="outline" type="button">
-                  Sign up with Google
-                </Button>
                 <FieldDescription className="px-6 text-center">
                   Already have an account? <Link href="/login">Sign in</Link>
                 </FieldDescription>

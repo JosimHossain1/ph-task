@@ -44,7 +44,7 @@ export async function getApprovedReview(bookId: string) {
 
   return await Review.find({
     book: bookId,
-    status: "Approved", // or "approved" (must match schema)
+    status: "Approved", 
   })
     .sort({ createdAt: -1 })
     .lean();

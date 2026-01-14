@@ -14,11 +14,11 @@ import {
 import Form from 'next/form'
 
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { DeletegenreAction, UpdategenreAction } from '@/app/serverActions/genreAction'
-import { GenreType } from '@/types/GenreType'
+import { DeletegenreAction, getAllGenre, UpdategenreAction } from '@/app/serverActions/genreAction'
 
 
-const GenreTable = ({genres} : {genres : GenreType[]}) => {
+const GenreTable = async() => {
+const genres = await getAllGenre()
 
 
   return (

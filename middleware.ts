@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
 
     // 3. Redirect logged-in users away from login/register
     if (pathname === "/login" || pathname === "/register") {
-      const redirectPath = userRole === "Admin" ? "/dashboard" : "/";
+      const redirectPath = userRole === "Admin" ? "/dashboard" : "/my-library";
       return NextResponse.redirect(new URL(redirectPath, request.url));
     }
 

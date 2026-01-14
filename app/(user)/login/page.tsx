@@ -44,8 +44,6 @@ export default function LoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      // Redirect handled by middleware based on role
-      router.push("/");
       router.refresh();
     } catch (err: any) {
       setError(err.message);
@@ -103,13 +101,6 @@ export default function LoginPage() {
               <Field className="space-y-2">
                 <Button type="submit" disabled={loading}>
                   {loading ? "Logging in..." : "Login"}
-                </Button>
-                <Button
-                  variant="outline"
-                  type="button"
-                  onClick={() => alert("Google login not implemented")}
-                >
-                  Login with Google
                 </Button>
 
                 <FieldDescription className="text-center mt-2">

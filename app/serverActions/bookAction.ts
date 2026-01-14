@@ -13,6 +13,12 @@ export async function getAllBooks() {
 }
 
 
+export async function getSingleBook(id: string) {
+  await dbConnect();
+  return await bookModel.findById(id).lean();
+}
+
+
 export async function BookAddFormAction(formData: FormData) {
 
   const bookName = formData.get("bookName") as string;

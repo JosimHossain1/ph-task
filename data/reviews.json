@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "bookId": "1",
+    "name": "Alice",
+    "rating": 5,
+    "comment": "Amazing book! The writing is so elegant and the story truly captivating."
+  },
+  {
+    "id": "2",
+    "bookId": "2",
+    "name": "Bob",
+    "rating": 4,
+    "comment": "Very thought-provoking. Made me question society and control."
+  },
+  {
+    "id": "3",
+    "bookId": "3",
+    "name": "Clara",
+    "rating": 5,
+    "comment": "A timeless romance. Loved the characters and their interactions."
+  },
+  {
+    "id": "4",
+    "bookId": "4",
+    "name": "David",
+    "rating": 5,
+    "comment": "Magical! A perfect start to the Harry Potter series."
+  },
+  {
+    "id": "5",
+    "bookId": "5",
+    "name": "Emma",
+    "rating": 4,
+    "comment": "A moving story about morality and justice. Must read."
+  },
+  {
+    "id": "6",
+    "bookId": "6",
+    "name": "Frank",
+    "rating": 5,
+    "comment": "Epic adventure! The world-building is fantastic."
+  }
+]

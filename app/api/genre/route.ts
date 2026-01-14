@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import genreModel from "@/models/genreModel";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   await dbConnect()

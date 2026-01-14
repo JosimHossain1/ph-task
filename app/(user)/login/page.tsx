@@ -32,11 +32,13 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
+    const users = {email, password}
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(users),
       });
 
       if (!res.ok) {
@@ -44,7 +46,6 @@ export default function LoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      router.refresh();
     } catch (err: any) {
       setError(err.message);
     } finally {

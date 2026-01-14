@@ -19,8 +19,8 @@ export async function POST(req: Request) {
 
   const token = signToken({
     id: user._id,
-    name : user.name,
-    email : user.email,
+    name: user.name,
+    email: user.email,
     role: user.role,
   });
 
@@ -29,7 +29,9 @@ export async function POST(req: Request) {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
+    path: "/",
   });
+
 
   return res;
 }

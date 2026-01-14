@@ -1,16 +1,4 @@
-"use client"
-
-import * as React from "react"
-import {
-  IconBook,
-  IconChartBar,
-  IconDashboard,
-  IconStar,
-  IconUsers,
-  IconVideo,
-} from "@tabler/icons-react"
-
-
+import * as React from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -19,100 +7,54 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { NavMain } from "./nav-main"
-import { NavUser } from "./nav-user"
+} from "@/components/ui/sidebar";
 
-const data = {
-  user: {
-    name: "Admin",
-    email: "admin@gmail.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+import { getCurrentUser } from "@/lib/getCurrentUser";
+import { IconBook } from "@tabler/icons-react";
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
 
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: IconDashboard,
-    },
-    {
-      title: "Manage Books",
-      url: "/dashboard/manage-books",
-      icon: IconBook,
-    },
-    {
-      title: "Manage Genres",
-      url: "/dashboard/manage-genre",
-      icon: IconChartBar,
-    },
-    {
-      title: "Manage Users",
-      url: "/dashboard/manage-users",
-      icon: IconUsers,
-    },
-    {
-      title: "Moderate Reviews",
-      url: "/dashboard/moderate-review",
-      icon: IconStar,
-    },
-    {
-      title: "Manage Tutorials",
-      url: "/dashboard/manage-tutorials",
-      icon: IconVideo,
-    },
-  ],
+export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  
+  const currentUser = await getCurrentUser();
 
-}
+  if (!currentUser) {
+    return <p>Loading sidebar...</p>;
+  }
 
-const userData = {
-  user: {
-    name: "User 1",
-    email: "user@gmail.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+  // Admin nav
+  const adminNav = [
+    { title: "Dashboard", url: "/dashboard", iconName: "dashboard" },
+    { title: "Manage Books", url: "/dashboard/manage-books", iconName: "book" },
+    { title: "Manage Genres", url: "/dashboard/manage-genre", iconName: "chart" },
+    { title: "Manage Users", url: "/dashboard/manage-users", iconName: "users" },
+    { title: "Moderate Reviews", url: "/dashboard/moderate-review", iconName: "star" },
+    { title: "Manage Tutorials", url: "/dashboard/manage-tutorials", iconName: "video" },
+  ];
 
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: IconDashboard,
-    },
-    {
-      title: "Browse Books",
-      url: "/dashboard/browse-books",
-      icon: IconBook,
-    },
-    {
-      title: "My Library",
-      url: "/dashboard/my-library",
-      icon: IconChartBar,
-    },
-    {
-      title: "Book Details",
-      url: "/dashboard/book-details",
-      icon: IconUsers,
-    },
-    {
-      title: "Tutorials",
-      url: "/dashboard/tutorial",
-      icon: IconVideo,
-    },
-  ],
+  // User nav
+  const userNav = [
+    { title: "Dashboard", url: "/dashboard", iconName: "dashboard" },
+    { title: "Browse Books", url: "/dashboard/browse-books", iconName: "book" },
+    { title: "My Library", url: "/dashboard/my-library", iconName: "chart" },
+    { title: "Book Details", url: "/dashboard/book-details", iconName: "users" },
+    { title: "Tutorials", url: "/dashboard/tutorial", iconName: "video" },
+  ];
 
-}
-const user = "Admin" as string
+  const navItems = currentUser.role === "Admin" ? adminNav : userNav;
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const userInfo = {
+    name:  currentUser.name,
+    email: currentUser.email,
+    avatar: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
+  };
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
+            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
               <a href="#">
                 <IconBook className="!size-5" />
                 <span className="text-base font-semibold">BookWorm</span>
@@ -121,12 +63,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
-        <NavMain items={user == "Admin" ? data.navMain : userData.navMain} />
+        <NavMain items={navItems} />
       </SidebarContent>
+
       <SidebarFooter>
-        <NavUser user={user == "Admin" ? data.user : userData.user} />
+        <NavUser user={userInfo} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

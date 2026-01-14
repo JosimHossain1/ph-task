@@ -102,7 +102,7 @@ export default function LoginPage() {
                 <Button type="submit" disabled={loading}>
                   {loading ? "Logging in..." : "Login"}
                 </Button>
-
+                
                 <FieldDescription className="text-center mt-2">
                   Don&apos;t have an account?{" "}
                   <a href="/register" className="text-indigo-600 hover:underline">

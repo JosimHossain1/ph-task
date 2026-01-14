@@ -27,7 +27,8 @@ export async function POST(req: Request) {
   const res = NextResponse.json({ success: true });
   res.cookies.set("token", token, {
     httpOnly: true,
-    sameSite: "strict",
+    secure: true,
+    sameSite: "lax",
   });
 
   return res;

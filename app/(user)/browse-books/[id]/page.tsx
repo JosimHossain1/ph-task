@@ -1,7 +1,44 @@
 import { getSingleBook } from "@/app/serverActions/bookAction";
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+import { Star } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import Form from "next/form";
+import { addReviewAction, getApprovedReview } from "@/app/serverActions/reviewAction";
+import { Input } from "@/components/ui/input";
+import { getCurrentUser } from "@/lib/getCurrentUser";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
- const Page = async({
+interface RatingData {
+  average: number;
+  totalReviews: number;
+  distribution: {
+    stars: number;
+    count: number;
+  }[];
+}
+
+const ratingData: RatingData = {
+  average: 4.6,
+  totalReviews: 124,
+  distribution: [
+    { stars: 5, count: 82 },
+    { stars: 4, count: 28 },
+    { stars: 3, count: 9 },
+    { stars: 2, count: 3 },
+    { stars: 1, count: 2 },
+  ],
+};
+
+
+
+const singleBookPage = async ({
   params,
 }: {
   params: Promise<{ id: string }>
@@ -10,99 +47,214 @@ import Image from "next/image";
   const { id } = await params
   const book = await getSingleBook(id)
 
+  const currentUser = await getCurrentUser();
+
+  const approvedReview = await getApprovedReview(id)
+  const maxCount = Math.max(...ratingData.distribution.map((d) => d.count));
+
   return (
-    <div className="min-h-screen bg-[#F6F4F1] px-4 py-12">
+    <div className="mx-auto px-32 py-10">
 
-      {
-        !book ? <div className="min-h-screen flex items-center justify-center bg-[#F6F4F1] px-4">
-      <div className="bg-white rounded-3xl shadow-lg p-10 text-center max-w-md">
-        <h1 className="text-3xl font-bold text-gray-800">
-          📚 Book Not Found
-        </h1>
-        <p className="text-gray-600 mt-3">
-          The book you are looking for doesn’t exist or may have been removed.
-        </p>
+      <Link href="/browse-books">Back to Book</Link>
 
-        <a
-          href="/books"
-          className="inline-block mt-6 px-6 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition"
-        >
-          Browse Books
-        </a>
-      </div>
-    </div> : <div className="mx-auto max-w-6xl">
-        
-        {/* Main Card */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 bg-white rounded-3xl shadow-xl p-8 md:p-12">
-          
-          {/* Book Cover */}
+      <Card className="p-6">
+        <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
           <div className="flex justify-center">
-            <div className="relative w-56 h-80 rounded-2xl overflow-hidden shadow-md">
-              <Image
-                src={book.cover}
-                alt={book.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+            <Image
+              src={book.coverImage}
+              alt={book.bookName}
+              width={350}
+              height={450}
+              className="rounded-lg object-cover shadow-md"
+            />
           </div>
 
-          {/* Book Details */}
-          <div className="md:col-span-2 flex flex-col gap-6">
-            
-            {/* Title & Author */}
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-                {book.title}
-              </h1>
-              <p className="text-gray-500 mt-2 text-lg">
-                by {book.author}
-              </p>
+          {/* Book Info */}
+          <div className="md:col-span-2 space-y-4">
+            <h1 className="text-3xl font-bold">{book.bookName}</h1>
+
+            <p className="text-muted-foreground text-lg">
+              by <span className="font-medium">{book.author}</span>
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              <Badge>{book.category}</Badge>
+              <Badge variant="outline">⭐ {book.rating}</Badge>
+              <Badge variant="secondary">📅 {book.year}</Badge>
             </div>
 
-            {/* Meta Info */}
-            <div className="flex flex-wrap gap-3 text-sm">
-              <span className="bg-purple-100 text-purple-700 px-4 py-1 rounded-full">
-                {book.genre}
-              </span>
-              <span className="bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full">
-                ⭐ {book.rating} / 5
-              </span>
-            </div>
+            <Separator />
 
-            {/* Description */}
-            {book.description && (
-              <p className="text-gray-600 leading-relaxed text-base">
-                {book.description}
+            <p className="leading-relaxed text-sm">
+              {book.description}
+            </p>
+
+            <Separator />
+
+            {/* Extra Information */}
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <p>
+                <span className="font-semibold">Pages:</span> {book.totalPages}
               </p>
-            )}
+              <p>
+                <span className="font-semibold">Publisher:</span>{" "}
+                {book.publisher}
+              </p>
+              <p>
+                <span className="font-semibold">Language:</span>{" "}
+                {book.language}
+              </p>
+            </div>
 
             {/* Actions */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <button className="px-6 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition">
-                Want to Read
-              </button>
-              <button className="px-6 py-2 rounded-full border border-purple-200 text-purple-700 hover:bg-purple-50 transition">
-                Currently Reading
-              </button>
-              <button className="px-6 py-2 rounded-full text-gray-600 hover:bg-gray-100 transition">
-                Read
-              </button>
+            <div className="flex gap-3 pt-4">
+              <Button>📖 Read Now</Button>
+              <Button variant="outline">⭐ Add to Favorites</Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+
+      {/* Review Writing Box */}
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Write a Review</CardTitle>
+        </CardHeader>
+
+        <CardContent className="space-y-5">
+          <Form action={addReviewAction}>
+            <div>
+              <p className="mb-2 text-sm font-medium">Rating</p>
+              <Input type="hidden" name="book" defaultValue={book._id} />
+              <Input type="hidden" name="user" defaultValue={currentUser?.id} />
+              <Select name="rating">
+                <SelectTrigger>
+                  <SelectValue placeholder="Select rating (1–5)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">★★★★★ (5)</SelectItem>
+                  <SelectItem value="4">★★★★☆ (4)</SelectItem>
+                  <SelectItem value="3">★★★☆☆ (3)</SelectItem>
+                  <SelectItem value="2">★★☆☆☆ (2)</SelectItem>
+                  <SelectItem value="1">★☆☆☆☆ (1)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <p className="mb-2 text-sm font-medium">Your Review</p>
+              <Textarea
+                name="comment"
+                placeholder="Write your honest review about this book..."
+                rows={4}
+              />
+            </div>
+            <Button className="w-full" type="submit">Submit Review</Button>
+          </Form>
+
+        </CardContent>
+      </Card>
+
+
+      <Card>
+        <CardContent className="p-6 space-y-6">
+          {/* Average Rating */}
+          <div className="flex items-center gap-4">
+            <div className="text-5xl font-bold">
+              {ratingData.average.toFixed(1)}
             </div>
 
+            <div>
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star
+                    key={i}
+                    className={`h-5 w-5 ${i <= Math.round(ratingData.average)
+                      ? "fill-yellow-400 text-yellow-400"
+                      : "text-muted-foreground"
+                      }`}
+                  />
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {approvedReview.length} reviews
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Cozy Footer Section */}
-        <div className="mt-12 text-center text-sm text-gray-500">
-          ☕ Find a quiet corner, open a book, and enjoy the moment.
-        </div>
+
+
+          {/* Rating Distribution */}
+          <div className="space-y-2">
+            {ratingData.distribution.map((item) => (
+              <div key={item.stars} className="flex items-center gap-3">
+                <span className="w-10 text-sm">{item.stars}★</span>
+
+                <Progress
+                  value={(item.count / maxCount) * 100}
+                  className="h-2"
+                />
+
+                <span className="w-8 text-sm text-muted-foreground">
+                  {item.count}
+                </span>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+
+      <div>
+        {
+          approvedReview.map(review => (
+            <Card className="my-5">
+              <CardContent className="p-5 space-y-3">
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Avatar>
+                      <AvatarFallback>
+                        dfgdf
+                      </AvatarFallback>
+                    </Avatar>
+
+                    <div>
+                      <p className="font-medium">dfgdf</p>
+                      <p className="text-xs text-muted-foreground">{review.createAt}</p>
+                    </div>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className={`h-4 w-4 ${star <= review.rating
+                            ? "fill-yellow-400 text-yellow-400"
+                            : "text-muted-foreground"
+                          }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Review Text */}
+                <p className="text-sm leading-relaxed">{review.comment}</p>
+              </CardContent>
+            </Card>
+          ))
+        }
       </div>
-      }
-      
+
+
+
+
     </div>
   );
 }
 
-export default Page
+
+export default singleBookPage

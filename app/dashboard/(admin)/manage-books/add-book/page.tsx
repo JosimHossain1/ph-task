@@ -15,16 +15,17 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import Form from "next/form"
 
 const AddBook = () => {
   return (
-    <div className="p-20">
+    <div className="p-10">
       <Card>
         <CardHeader>
           <CardTitle>Add New Book</CardTitle>
           <CardDescription>
-            Fill in the information below to add a new book.
+            Provide all required information to add a book.
           </CardDescription>
         </CardHeader>
 
@@ -32,13 +33,11 @@ const AddBook = () => {
           <Form action={BookAddFormAction}>
             <FieldGroup>
 
-              {/* Book Name */}
               <Field>
                 <FieldLabel htmlFor="bookName">Book Name</FieldLabel>
                 <Input
                   id="bookName"
                   name="bookName"
-                  type="text"
                   placeholder="Clean Code"
                   required
                 />
@@ -49,55 +48,51 @@ const AddBook = () => {
                 <Input
                   id="author"
                   name="author"
-                  type="text"
                   placeholder="Robert C. Martin"
                   required
                 />
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="genre">Genre</FieldLabel>
+                <FieldLabel htmlFor="genre">Genre ID</FieldLabel>
                 <Input
                   id="genre"
                   name="genre"
-                  type="text"
-                  placeholder="Programming"
+                  placeholder="Genre ID"
                   required
                 />
               </Field>
 
 
               <Field>
-                <FieldLabel htmlFor="totalCopies">Total Copies</FieldLabel>
+                <FieldLabel htmlFor="description">Description</FieldLabel>
+                <Textarea
+                  id="description"
+                  name="description"
+                  placeholder="Write a short description about the book..."
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="coverImage">Cover Image URL</FieldLabel>
                 <Input
-                  id="totalCopies"
-                  name="totalCopies"
+                  id="coverImage"
+                  name="coverImage"
+                  placeholder="https://image-url.com/book.jpg"
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="totalPages">Total Pages</FieldLabel>
+                <Input
+                  id="totalPages"
+                  name="totalPages"
                   type="number"
-                  placeholder="10"
+                  placeholder="464"
                   required
                 />
               </Field>
-              <Field>
-                <FieldLabel htmlFor="shelfLocation">Shelf Location</FieldLabel>
-                <Input
-                  id="shelfLocation"
-                  name="shelfLocation"
-                  type="text"
-                  placeholder="Floor 2, room 14"
-                  required
-                />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="publishedYear">Published Year</FieldLabel>
-                <Input
-                  id="publishedYear"
-                  name="publishedYear"
-                  type="text"
-                  placeholder="Example : 2003"
-                  required
-                />
-              </Field>
-              
+
               <Field>
                 <Button type="submit" className="w-full">
                   Add Book

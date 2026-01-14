@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
 export const getCurrentUser = async () => {
-  // await cookies() if TS thinks it's a Promise
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 

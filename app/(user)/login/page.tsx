@@ -1,4 +1,5 @@
 "use client";
+import { ToastContainer, toast } from 'react-toastify';
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -32,13 +33,13 @@ export default function LoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      // 1. Refresh to ensure middleware detects the cookie
       router.refresh();
-      
-      // 2. Redirect based on role
+
       if (data.user.role === "Admin") {
+        toast.success("Login Successfull!")
         router.push("/dashboard");
       } else {
+        toast.success("Login Successfull!")
         router.push("/my-library");
       }
 
@@ -75,6 +76,7 @@ export default function LoginPage() {
           </form>
         </CardContent>
       </Card>
-    </div>
+    <ToastContainer/>
+    </div >
   );
 }

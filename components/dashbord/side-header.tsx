@@ -1,8 +1,9 @@
 "use client"
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { usePathname } from "next/navigation"
+import LogoutButton from "../Logout"
+import { NavUser } from "./nav-user"
 
 export function SiteHeader() {
 
@@ -18,16 +19,7 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">{path}</h1>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
-            <a
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="dark:text-foreground"
-            >
-              GitHub
-            </a>
-          </Button>
+          <LogoutButton />
         </div>
       </div>
     </header>

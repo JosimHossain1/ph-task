@@ -26,8 +26,6 @@ const BookTable = ({books} : {books : BookType[]}) => {
             <th className="border px-3 py-2 text-left">Book Name</th>
             <th className="border px-3 py-2 text-left">Author</th>
             <th className="border px-3 py-2 text-left">Genre</th>
-            <th className="border px-3 py-2 text-left">Shelf</th>
-            <th className="border px-3 py-2 text-left">Year</th>
             <th className="border px-3 py-2">Status</th>
             <th className="border px-3 py-2">Total</th>
             <th className="border px-3 py-2">Available</th>
@@ -44,8 +42,6 @@ const BookTable = ({books} : {books : BookType[]}) => {
                 <td className="border px-3 py-2">{book.bookName}</td>
                 <td className="border px-3 py-2">{book.author}</td>
                 <td className="border px-3 py-2">{book.genre}</td>
-                <td className="border px-3 py-2">{book.shelfLocation}</td>
-                <td className="border px-3 py-2">{book.publishedYear}</td>
                 <td className="border px-3 py-2 text-center">{book.status}</td>
                 <td className="border px-3 py-2 text-center">{book.totalCopies}</td>
                 <td className="border px-3 py-2 text-center">{book.availableCopies}</td>
@@ -81,21 +77,6 @@ const BookTable = ({books} : {books : BookType[]}) => {
                           <div className="grid gap-3">
                             <Label htmlFor="genre">Genre</Label>
                             <Input id="genre" name="genre" defaultValue={book.genre} />
-                          </div>
-
-                          <div className="grid gap-3">
-                            <Label htmlFor="shelfLocation">Shelf Location</Label>
-                            <Input id="shelfLocation" name="shelfLocation" defaultValue={book.shelfLocation} />
-                          </div>
-
-                          <div className="grid gap-3">
-                            <Label htmlFor="publishedYear">Publication Year</Label>
-                            <Input
-                              id="publishedYear"
-                              name="publishedYear"
-                              type="number"
-                              defaultValue={book.publishedYear}
-                            />
                           </div>
                         </div>
 

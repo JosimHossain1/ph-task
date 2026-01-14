@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
-import LogoutButton from "../Logout";
+import LogoutButton from "./Logout";
 
 
 export default async function Navbar() {
-  // 1. Check if the token cookie exists
+
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
   const isLoggedIn = !!token;
@@ -17,7 +17,14 @@ export default async function Navbar() {
 
       <div className="flex gap-4 items-center">
         {isLoggedIn ? (
-          <LogoutButton />
+          <>
+            <ul className="space-x-2">
+              <Link href="/browse-books" className="underline space-x-2">Browse Books</Link>
+              <Link href="/my-library" className="underline space-x-2">My Library</Link>
+            </ul>
+            <LogoutButton />
+
+          </>
         ) : (
           <>
             <Link href="/login" className="text-gray-700 hover:text-blue-600">

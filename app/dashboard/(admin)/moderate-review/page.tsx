@@ -1,12 +1,12 @@
 export const dynamic = "force-dynamic"
 
-import ReviewPage from "@/components/dashbord/ModerateTable"
+import ReviewTable from "@/components/dashbord/ReviewTable"
 
 const ModerateReviewPage = async() => {
 
   return (
     <div>
-      <ReviewPage/>
+      <ReviewTable/>
     </div>
   )
 }

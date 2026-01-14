@@ -2,26 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
 export default function LoginPage() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,18 +19,27 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    const users = {email, password}
-
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(users),
+        body: JSON.stringify({ email, password }),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.error || "Login failed");
+      }
+
+      // 1. Refresh to ensure middleware detects the cookie
+      router.refresh();
+      
+      // 2. Redirect based on role
+      if (data.user.role === "Admin") {
+        router.push("/dashboard");
+      } else {
+        router.push("/my-library");
       }
 
     } catch (err: any) {
@@ -57,60 +53,24 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 px-4">
       <Card className="w-full max-w-md shadow-lg rounded-xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Login to your account</CardTitle>
-          <CardDescription>Enter your email and password below</CardDescription>
+          <CardTitle className="text-2xl font-bold">Login</CardTitle>
+          <CardDescription>Enter your email and password</CardDescription>
         </CardHeader>
         <CardContent>
-          {error && (
-            <div className="text-red-600 text-sm mb-4 text-center">{error}</div>
-          )}
-
+          {error && <div className="p-2 mb-4 text-sm text-red-600 bg-red-100 rounded">{error}</div>}
           <form onSubmit={handleSubmit}>
             <FieldGroup className="space-y-4">
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  type="email"
-                  required
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <FieldLabel>Email</FieldLabel>
+                <Input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </Field>
-
               <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <FieldLabel>Password</FieldLabel>
+                <Input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </Field>
-
-              <Field className="space-y-2">
-                <Button type="submit" disabled={loading}>
-                  {loading ? "Logging in..." : "Login"}
-                </Button>
-                
-                <FieldDescription className="text-center mt-2">
-                  Don&apos;t have an account?{" "}
-                  <a href="/register" className="text-indigo-600 hover:underline">
-                    Sign up
-                  </a>
-                </FieldDescription>
-              </Field>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Logging in..." : "Login"}
+              </Button>
             </FieldGroup>
           </form>
         </CardContent>

@@ -15,14 +15,17 @@ import Form from 'next/form'
 
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { DeletegenreAction, getAllGenre, UpdategenreAction } from '@/app/serverActions/genreAction'
+import Link from "next/link"
 
 
-const GenreTable = async() => {
-const genres = await getAllGenre()
+const GenreTable = async () => {
+  const genres = await getAllGenre()
 
 
   return (
     <div className="py-5">
+      <Link href="/dashboard/manage-genre/add-genre"> <Button>Add New Genre</Button></Link>
+
       <table className="w-full border-collapse rounded-lg border">
         <thead className="bg-gray-100">
           <tr>

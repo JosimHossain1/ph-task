@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { AddGenreAction } from "@/app/serverActions/genreAction"
 import { Button } from "@/components/ui/button"
 import {

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { BookAddFormAction } from "@/app/serverActions/bookAction"
 import { Button } from "@/components/ui/button"
 import {

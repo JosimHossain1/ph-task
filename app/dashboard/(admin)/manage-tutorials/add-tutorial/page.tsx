@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { getAllGenre } from '@/app/serverActions/genreAction'
 import { AddTutorialAction } from '@/app/serverActions/tutorialAction'
 import { Button } from '@/components/ui/button'

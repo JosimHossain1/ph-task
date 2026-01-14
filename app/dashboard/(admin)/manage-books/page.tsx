@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 
 import { getAllBooks } from '@/app/serverActions/bookAction'
 import BookDataTable from '@/components/dashbord/BookTable'

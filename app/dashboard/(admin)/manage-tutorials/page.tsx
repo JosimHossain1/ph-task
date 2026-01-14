@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { getAllTutorial } from "@/app/serverActions/tutorialAction"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
